@@ -8,90 +8,198 @@ app.use(express.json())
 
 //sequelize
 const sequelize = require('./database/db')
-const Genero = require('./models/generoModelo')
-const Pelicula = require('./models/peliculaModelo')
-const Personaje = require('./models/personajeModelo')
+const Gender = require('./models/genderModels')
+const Movies = require('./models/moviesModels')
+const Characters = require('./models/charactersModels')
 //importamos la relacion many to many para que la base de datos sepa que existe esta relacion
 require("./models/associations")
 
+//middlewares
+const Validators = require('./middleware')
+
 
 app.get('/', (req, res)=>{
-    res.status(200).json({mensaje: "hola"})
+    res.status(200).json({mensaje: "welcome"})
 })
 
 //genero
-app.get('/genero', async(req, res)=>{
+app.get('/gender', async(req, res)=>{
     try {
-        const response = await Genero.findAll()
+        const response = await Gender.findAll()
         res.json(response)
     } catch (error) {
         console.log(error)
     }
 })
 
-app.post('/genero', async(req, res)=>{
+app.get('/gender/:id', Validators.idValidators, async(req, res, next)=>{
     try {
-        const response = await Genero.create(req.body)
-        console.log(response)
+        const {id} = req.params
+        const response = await Gender.findByPk(id)
+        if(!response)throw new Error('Gender no exist')
         res.json(response)
     } catch (error) {
-        console.log(error)
-        res.json(error)
+        next(error)
+    }
+})
+
+app.post('/gender', Validators.genderValidators, async(req, res, next)=>{
+    try {
+        const {nombre, imagen} = req.body
+        const response = await Gender.create({"nombre": nombre.trim(), "imagen":imagen})
+        res.status(201).json(response)
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.delete('/gender/:id', Validators.idValidators, async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const response = await Gender.destroy({
+            where:{
+                id: id
+            }
+        })
+        if(!response)throw new Error('Gender no exist')
+        res.json({msg: "Delete successful"})
+
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.put('/gender/:id', [Validators.idValidators, Validators.genderValidators], async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const {nombre} = req.body
+        let response = await Gender.update({
+            nombre
+        },{
+            where:{
+                id
+            }
+        })
+        response = await Gender.findByPk(id)
+        if(!response)throw new Error('Gender no exist')
+        res.json(response)
+    } catch (error) {
+        next(error)
     }
 })
 
 //peliculas
-app.get('/pelicula', async(req, res)=>{
-    const response = await Pelicula.findAll()
-    res.json(response)
+app.get('/movies', async(req, res, next)=>{
+    try {
+        const response = await Movies.findAll({
+            attributes: ["id", "titulo", "fecha"]
+        })
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
 })
-app.get('/pelicula/:id', async(req, res)=>{
-    const {id} = req.params
-    const response = await Pelicula.findByPk(id)
-    res.json(response)
+app.get('/movies/:id', Validators.idValidators, async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const response = await Movies.findOne({
+            where: {
+                id
+            },
+            include: [Gender]
+        })
+        if(!response)throw new Error('Movie no exist')
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
 })
-app.post('/pelicula', async(req, res)=>{
-    const response = await Pelicula.create(req.body)
-    console.log(response)
-    res.json(response)
+app.post('/movies', Validators.moviesBodyValidators, async(req, res, next)=>{
+    try {
+        const response = await Movies.create(req.body)
+        res.status(201).json(response)
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.delete('/movies/:id', Validators.idValidators, async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const response = await Movies.destroy({
+            where:{
+                id: id
+            }
+        })
+        if(!response)throw new Error('Movie no exist')
+        res.json({msg: "Delete successful"})
+
+    } catch (error) {
+        next(error)
+    }
 })
 
 //personajes
-app.get('/personaje', async(req, res)=>{
-    const response = await Personaje.findAll({
-        attributes: ["nombre"]
+app.get('/characters', async(req, res)=>{
+    const response = await Characters.findAll({
+        attributes: ["id", "nombre"]
     })
-
     res.json(response)
 })
 
-app.get('/personaje/:id', async(req, res)=>{
+app.get('/characters/:id', async(req, res)=>{
     const {id} = req.params
-    const response = await Personaje.findByPk(id)
+    const response = await Characters.findByPk(id)
     console.log(response.dataValues)
-    const peliculas = await PeliPerso.findAll({
-        where: {
-            personaje_id: Number(id)
-        },
-        attributes: {exclude:["personaje_id", "id"]}
-    })
-    res.json({...response.dataValues, peliculas})
+    res.json(response.dataValues)
 })
 
-app.post('/personaje', async(req, res)=>{
-    const { nombre, edad, peso, historia, pelicula } = req.body
-    const personaje = await Personaje.create({nombre, edad, peso, historia})
-    const response = await Personaje.addPelicula()
-    console.log(response)
-    res.json(personaje)
+app.post('/characters', Validators.charactersBodyValidators, async(req, res, next)=>{
+    try {
+        const { nombre, edad, peso, historia } = req.body
+        const character = await Characters.create({nombre, edad, peso, historia})
+        res.status(201).json(character)
+    } catch (error) {
+        next(error)
+    }
 })
+
+app.delete('/characters/:id', Validators.idValidators, async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const response = await Characters.destroy({
+            where:{
+                id: id
+            }
+        })
+        if(!response)throw new Error('Character no exist')
+        res.json({msg: "Delete successful"})
+
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.use((req, res)=>{
+    res.status(404).json({msj: "Not found"})
+})
+
+//error handler
+app.use((err, req, res, next)=>{
+    if(err.errors){
+        res.status(400).json({error:err.errors[0].message})
+        return
+    }
+    res.status(400).json({error:err.message})
+})
+
 
 app.listen(port, async()=>{
     try {
         console.log(`app listening on port ${port}`)
         //conectamos a la base de datos
         await sequelize.authenticate()
-        await sequelize.sync({force:false})
+        await sequelize.sync({alter:true})
         console.log('connected to database')
     } catch (error) {
         console.log(`error to connect: ${error}`)

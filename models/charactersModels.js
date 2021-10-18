@@ -2,9 +2,9 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../database/db')
 
 
-const Personaje = sequelize.define("personaje", {
+const Characters = sequelize.define("characters", {
     nombre: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(60),
         allowNull: false,
         unique: true
     },
@@ -23,4 +23,4 @@ const Personaje = sequelize.define("personaje", {
 })
 
 
-module.exports = Personaje
+module.exports = Characters

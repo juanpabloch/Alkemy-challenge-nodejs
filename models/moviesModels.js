@@ -1,32 +1,33 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/db')
-const Genero = require('./generoModelo')
+const Gender = require('./genderModels')
 
-const Pelicula = sequelize.define("pelicula", {
+const Movie = sequelize.define("movie", {
     titulo: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
     },
     fecha: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        allowNull: false
     },
     calificacion:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     }
 }, {
     timestamps: false //previene que se cree createdAt y updatedAt automaticamente
 })
 
 
-module.exports = Pelicula
+module.exports = Movie
 
 //luego de exportar creamos las relaciones entre tablas
-//creamos la relacion con la tabla genero, esta relacion belongsTo crea una nueva fila en la tabla peliculas 
+//creamos la relacion con la tabla genero, esta relacion belongsTo crea una nueva fila en la tabla Movies 
 //para referenciar a un genero
 
-Pelicula.belongsTo(Genero, {
+Movie.belongsTo(Gender, {
     foreignKey: "genero_id",
-    targetKey: "id"
+    targetKey: "id",
 })
