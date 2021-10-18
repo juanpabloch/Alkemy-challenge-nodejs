@@ -3,16 +3,16 @@ const sequelize = require('../database/db')
 const Gender = require('./genderModels')
 
 const Movie = sequelize.define("movie", {
-    titulo: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    fecha: {
+    date: {
         type: DataTypes.DATE,
         allowNull: false
     },
-    calificacion:{
+    rate:{
         type: DataTypes.INTEGER,
         allowNull: false,
     }
@@ -28,6 +28,6 @@ module.exports = Movie
 //para referenciar a un genero
 
 Movie.belongsTo(Gender, {
-    foreignKey: "genero_id",
+    foreignKey: "gender_id",
     targetKey: "id",
 })

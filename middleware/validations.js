@@ -10,9 +10,9 @@ const isNumber = (req, res, next)=>{
 
 const genderBody = (req, res, next)=>{
     try {
-        const {nombre} = req.body
-        if(!nombre.trim())throw new Error("Name require")
-        if(!/^[a-z ]+$/gi.test(nombre))throw new Error("Not symbols or numbers allow")
+        const {name} = req.body
+        if(!name.trim())throw new Error("Name require")
+        if(!/^[a-z ]+$/gi.test(name))throw new Error("Not symbols or numbers allow")
         next()
     } catch (error) {
         next(error)
@@ -21,14 +21,14 @@ const genderBody = (req, res, next)=>{
 
 const moviesBody = (req, res, next)=>{
     try {
-        const {titulo, fecha, calificacion} = req.body
-        //titulo
-        if(!titulo.trim())throw new Error("Title require")
-        if(!/^[a-z0-9 ]+$/gi.test(titulo))throw new Error("Not symbols or numbers allow")
-        //fecha
-        if(!fecha.trim())throw new Error("Date require")
-        //calificacion
-        if(!Number(calificacion))throw new Error("Rate must be a number");
+        const {title, date, rate} = req.body
+        //title
+        if(!title.trim())throw new Error("Title require")
+        if(!/^[a-z0-9 ]+$/gi.test(title))throw new Error("Not symbols or numbers allow")
+        //date
+        if(!date.trim())throw new Error("Date require")
+        //rate
+        if(!Number(rate))throw new Error("Rate must be a number");
         next()
     } catch (error) {
         next(error)
@@ -37,16 +37,16 @@ const moviesBody = (req, res, next)=>{
 
 const charactersBody = (req, res, next)=>{
     try {
-        const {nombre, edad, peso, historia} = req.body
-        //nombre
-        if(!nombre.trim())throw new Error("Name require")
-        if(!/^[a-z ]+$/gi.test(nombre))throw new Error("Not symbols allow")
-        //edad
-        if(!Number(edad))throw new Error("Age must be a number");
-        //peso
-        if(!Number(peso))throw new Error("Weight must be a number");
-        //historia
-        if(!historia.trim())throw new Error("History require")
+        const {name, age, weight, history} = req.body
+        //name
+        if(!name.trim())throw new Error("Name require")
+        if(!/^[a-z ]+$/gi.test(name))throw new Error("Not symbols allow")
+        //age
+        if(!Number(age))throw new Error("Age must be a number");
+        //weight
+        if(!Number(weight))throw new Error("Weight must be a number");
+        //history
+        if(!history.trim())throw new Error("History require")
         next()
     } catch (error) {
         next(error)

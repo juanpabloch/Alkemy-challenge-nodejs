@@ -3,18 +3,18 @@ const sequelize = require('../database/db')
 
 
 const Characters = sequelize.define("characters", {
-    nombre: {
+    name: {
         type: DataTypes.STRING(60),
         allowNull: false,
         unique: true
     },
-    edad: {
+    age: {
         type: DataTypes.INTEGER
     },
-    peso: {
+    weight: {
         type: DataTypes.DOUBLE
     },
-    historia: {
+    history: {
         type: DataTypes.STRING,
         allowNull: false
     },

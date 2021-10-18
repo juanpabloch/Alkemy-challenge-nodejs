@@ -36,7 +36,7 @@ app.get('/gender/:id', Validators.idValidators, async(req, res, next)=>{
     try {
         const {id} = req.params
         const response = await Gender.findByPk(id)
-        if(!response)throw new Error('Gender no exist')
+        if(!response)throw new Error('Gender not exist')
         res.json(response)
     } catch (error) {
         next(error)
@@ -45,8 +45,8 @@ app.get('/gender/:id', Validators.idValidators, async(req, res, next)=>{
 
 app.post('/gender', Validators.genderValidators, async(req, res, next)=>{
     try {
-        const {nombre, imagen} = req.body
-        const response = await Gender.create({"nombre": nombre.trim(), "imagen":imagen})
+        const {name, image} = req.body
+        const response = await Gender.create({"name": name.trim(), "image":image})
         res.status(201).json(response)
     } catch (error) {
         next(error)
@@ -61,7 +61,7 @@ app.delete('/gender/:id', Validators.idValidators, async(req, res, next)=>{
                 id: id
             }
         })
-        if(!response)throw new Error('Gender no exist')
+        if(!response)throw new Error('Gender not exist')
         res.json({msg: "Delete successful"})
 
     } catch (error) {
@@ -72,16 +72,16 @@ app.delete('/gender/:id', Validators.idValidators, async(req, res, next)=>{
 app.put('/gender/:id', [Validators.idValidators, Validators.genderValidators], async(req, res, next)=>{
     try {
         const {id} = req.params
-        const {nombre} = req.body
+        const {name} = req.body
         let response = await Gender.update({
-            nombre
+            name
         },{
             where:{
                 id
             }
         })
         response = await Gender.findByPk(id)
-        if(!response)throw new Error('Gender no exist')
+        if(!response)throw new Error('Gender not exist')
         res.json(response)
     } catch (error) {
         next(error)
@@ -92,7 +92,7 @@ app.put('/gender/:id', [Validators.idValidators, Validators.genderValidators], a
 app.get('/movies', async(req, res, next)=>{
     try {
         const response = await Movies.findAll({
-            attributes: ["id", "titulo", "fecha"]
+            attributes: ["id", "title", "date"]
         })
         res.json(response)
     } catch (error) {
@@ -106,9 +106,10 @@ app.get('/movies/:id', Validators.idValidators, async(req, res, next)=>{
             where: {
                 id
             },
-            include: [Gender]
+            include: [Gender],
+            attributes: {exclude: "gender_id"}
         })
-        if(!response)throw new Error('Movie no exist')
+        if(!response)throw new Error('Movie not exist')
         res.json(response)
     } catch (error) {
         next(error)
@@ -131,7 +132,7 @@ app.delete('/movies/:id', Validators.idValidators, async(req, res, next)=>{
                 id: id
             }
         })
-        if(!response)throw new Error('Movie no exist')
+        if(!response)throw new Error('Movie not exist')
         res.json({msg: "Delete successful"})
 
     } catch (error) {
@@ -140,24 +141,31 @@ app.delete('/movies/:id', Validators.idValidators, async(req, res, next)=>{
 })
 
 //personajes
-app.get('/characters', async(req, res)=>{
-    const response = await Characters.findAll({
-        attributes: ["id", "nombre"]
-    })
-    res.json(response)
+app.get('/characters', async(req, res, next)=>{
+   try {
+        const response = await Characters.findAll({
+            attributes: ["id", "name"]
+        })
+        res.json(response)
+   } catch (error) {
+       next(error)
+   }
 })
 
-app.get('/characters/:id', async(req, res)=>{
-    const {id} = req.params
-    const response = await Characters.findByPk(id)
-    console.log(response.dataValues)
-    res.json(response.dataValues)
+app.get('/characters/:id', async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const response = await Characters.findByPk(id)
+        if(!response)throw new Error('Character not exist')
+        res.json(response)
+    } catch (error) {
+        next(error)
+    }
 })
 
 app.post('/characters', Validators.charactersBodyValidators, async(req, res, next)=>{
     try {
-        const { nombre, edad, peso, historia } = req.body
-        const character = await Characters.create({nombre, edad, peso, historia})
+        const character = await Characters.create(req.body)
         res.status(201).json(character)
     } catch (error) {
         next(error)
@@ -172,9 +180,29 @@ app.delete('/characters/:id', Validators.idValidators, async(req, res, next)=>{
                 id: id
             }
         })
-        if(!response)throw new Error('Character no exist')
+        if(!response)throw new Error('Character not exist')
         res.json({msg: "Delete successful"})
 
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.put('/characters/:id', [Validators.charactersBodyValidators, Validators.idValidators], async(req, res, next)=>{
+    try {
+        const {id} = req.params
+        const { name, age, weight, history } = req.body
+        let response = await Characters.update({
+            name, age, weight, history
+        },{
+            where:{
+                id
+            }
+        })
+
+        response = await Characters.findByPk(id)
+        if(!response)throw new Error('Character not exist')
+        res.json(response)
     } catch (error) {
         next(error)
     }

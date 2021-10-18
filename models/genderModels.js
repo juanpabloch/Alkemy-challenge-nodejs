@@ -2,12 +2,12 @@ const { DataTypes} = require('sequelize')
 const sequelize = require('../database/db')
 
 const Gender = sequelize.define("gender", {
-    nombre: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    imagen: {
+    image: {
         type: DataTypes.STRING
     },
 }, {
