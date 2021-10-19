@@ -11,19 +11,62 @@ const sequelize = require('./database/db')
 const Gender = require('./models/genderModels')
 const Movies = require('./models/moviesModels')
 const Characters = require('./models/charactersModels')
+//users
+const Users = require('./models/userModels')
+const {hash, unHash} = require('./utils/bcrypt')
+const {createToken} = require('./services/auth')
+
+const {Op} = require('sequelize')
 //importamos la relacion many to many para que la base de datos sepa que existe esta relacion
 require("./models/associations")
 
 //middlewares
 const Validators = require('./middleware')
-
+const User = require('./models/userModels')
+const tokenAuth = require('./middleware/auth')
 
 app.get('/', (req, res)=>{
     res.status(200).json({mensaje: "welcome"})
 })
+//user
+app.post('/auth/register', async (req, res, next)=>{
+    try {
+        const {userName, email} = req.body
+        const password = hash(req.body.password)
+        console.log(password)
+        await Users.create({userName, email: email.trim(), password})
+        res.status(201).json({msg: "user register successful"})
+    } catch (error) {
+        next(error)
+    }
+})
+
+app.post('/auth/login', async (req, res, next)=>{
+    try {
+        const {email, password} = req.body;
+        const response = await User.findOne({where: {email: email}})
+        if(!response)throw new Error('email or password invalid')
+        
+        const isPasswordValid = unHash(password, response.password)
+        if(!isPasswordValid)throw new Error('email or password invalid')
+        //token
+        const jwtObject = {
+            id: response.id,
+            userName: response.userName
+        }
+        const JWT = createToken(jwtObject)
+        res.json({
+            msj: "login successful",
+            token: JWT
+    })
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 //genero
-app.get('/gender', async(req, res)=>{
+app.get('/gender', tokenAuth, async(req, res)=>{
     try {
         const response = await Gender.findAll()
         res.json(response)
@@ -143,6 +186,30 @@ app.delete('/movies/:id', Validators.idValidators, async(req, res, next)=>{
 //personajes
 app.get('/characters', async(req, res, next)=>{
    try {
+       //name query
+       if(req.query.name){
+           const response = await Characters.findAll({
+               attributes: ["id", "name"],
+               where: {
+                   name: {[Op.substring] : req.query.name}
+               }
+           })
+           res.json(response)
+           return
+       }
+
+       //age query
+       if(req.query.age){
+        const response = await Characters.findAll({
+            attributes: ["id", "name"],
+            where: {
+                age: {[Op.substring] : req.query.age}
+            }
+        })
+        res.json(response)
+        return
+    }
+
         const response = await Characters.findAll({
             attributes: ["id", "name"]
         })
@@ -227,7 +294,7 @@ app.listen(port, async()=>{
         console.log(`app listening on port ${port}`)
         //conectamos a la base de datos
         await sequelize.authenticate()
-        await sequelize.sync({alter:true})
+        // await sequelize.sync({alter:true})
         console.log('connected to database')
     } catch (error) {
         console.log(`error to connect: ${error}`)

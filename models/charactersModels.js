@@ -15,7 +15,7 @@ const Characters = sequelize.define("characters", {
         type: DataTypes.DOUBLE
     },
     history: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(999),
         allowNull: false
     },
 }, {

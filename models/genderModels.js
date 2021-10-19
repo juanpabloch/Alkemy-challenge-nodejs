@@ -3,7 +3,7 @@ const sequelize = require('../database/db')
 
 const Gender = sequelize.define("gender", {
     name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(60),
         allowNull: false,
         unique: true,
     },
