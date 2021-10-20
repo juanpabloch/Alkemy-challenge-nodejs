@@ -8,7 +8,8 @@ const Gender = sequelize.define("gender", {
         unique: true,
     },
     image: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
 }, {
     // Other model options go here

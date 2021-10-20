@@ -15,6 +15,10 @@ const Movie = sequelize.define("movie", {
     rate:{
         type: DataTypes.INTEGER,
         allowNull: false,
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     timestamps: false //previene que se cree createdAt y updatedAt automaticamente

@@ -18,6 +18,10 @@ const Characters = sequelize.define("characters", {
         type: DataTypes.STRING(999),
         allowNull: false
     },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
 }, {
     timestamps: false
 })
