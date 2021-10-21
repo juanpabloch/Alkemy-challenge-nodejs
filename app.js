@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const port = process.env.PORT || 3000
 
 const multer = require('multer')
 const multerStorage = multer.diskStorage({
@@ -8,8 +9,6 @@ const multerStorage = multer.diskStorage({
         cb(null, file.originalname);
     }
 })
-
-const port = process.env.PORT || 3000
 
 app.use(express.urlencoded())
 app.use(express.json())
@@ -50,7 +49,6 @@ app.use((err, req, res, next)=>{
     }
     res.status(400).json({error:err.message})
 })
-
 
 
 app.listen(port, async()=>{
