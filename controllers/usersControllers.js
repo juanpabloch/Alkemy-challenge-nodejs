@@ -1,14 +1,37 @@
 const Users = require('../models/userModels')
 const {hash, unHash} = require('../utils/bcrypt')
 const {createToken} = require('../services/auth')
+const sgMail = require('@sendgrid/mail')
+
+sgMail.setApiKey('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')
+const msg = (to, text, html)=>{
+    return {
+        to,
+        from: 'juanpablo_ch2@hotmail.com',
+        subject: 'Welcome to Explore-Disney API',
+        text,
+        html
+    }
+}
 
 const register = async (req, res, next)=>{
     try {
         const {userName, email} = req.body
         const password = hash(req.body.password)
-        console.log(password)
+    
         await Users.create({userName, email: email.trim(), password})
-        res.status(201).json({msg: "user register successful"})
+        
+        const text = `hello ${userName}`
+        const html = `<h1>Hello ${userName}! and Welcome to Explore-Disney API</h1>`
+        sgMail.send(msg(email.trim(), text, html))
+            .then(()=>{
+                console.log('email sent')
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+
+        res.status(201).json({msg: "user register successf1ully"})
     } catch (error) {
         next(error)
     }

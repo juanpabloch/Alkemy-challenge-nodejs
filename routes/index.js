@@ -13,8 +13,8 @@ router.get('/', (req, res)=>{
 })
 
 router.use("/genders", tokenAuth, gendersRoutes)
-router.use("/movies", moviesRoutes)
-router.use("/characters", charactersRoutes)
+router.use("/movies", tokenAuth, moviesRoutes)
+router.use("/characters", tokenAuth, charactersRoutes)
 router.use("/auth", usersRoutes)
 
 module.exports = router

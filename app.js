@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
+const cors = require('cors')
 
 const multer = require('multer')
 const multerStorage = multer.diskStorage({
@@ -10,6 +11,7 @@ const multerStorage = multer.diskStorage({
     }
 })
 
+app.use(cors())
 app.use(express.urlencoded())
 app.use(express.json())
 app.use('/public' ,express.static('public'))
