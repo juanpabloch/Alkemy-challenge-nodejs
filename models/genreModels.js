@@ -1,7 +1,7 @@
 const { DataTypes} = require('sequelize')
 const sequelize = require('../database/db')
 
-const Gender = sequelize.define("gender", {
+const Genre = sequelize.define("genre", {
     name: {
         type: DataTypes.STRING(60),
         allowNull: false,
@@ -16,4 +16,4 @@ const Gender = sequelize.define("gender", {
     timestamps: false //previene que se cree createdAt y updatedAt automaticamente
 })
 
-module.exports = Gender
+module.exports = Genre

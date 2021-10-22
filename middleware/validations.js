@@ -8,7 +8,7 @@ const isNumber = (req, res, next)=>{
     }
 }
 
-const genderBody = (req, res, next)=>{
+const genreBody = (req, res, next)=>{
     try {
         const {name} = req.body
         if(!name.trim())throw new Error("Name require")
@@ -19,7 +19,7 @@ const genderBody = (req, res, next)=>{
     }
 }
 
-const genderUpdateBody = (req, res, next)=>{
+const genreUpdateBody = (req, res, next)=>{
     try {
         const {name} = req.body
         if(name){
@@ -121,8 +121,8 @@ const charactersPost = [charactersBody]
 const charactersUpdate = [isNumber, charactersUpdateBody]
 const moviesPost = [moviesBody]
 const moviesUpdate = [isNumber, moviesUpdateBody]
-const genderPost = [genderBody]
-const genderUpdate = [isNumber, genderUpdateBody]
+const genrePost = [genreBody]
+const genreUpdate = [isNumber, genreUpdateBody]
 const getByID = [isNumber]
 
 
@@ -131,7 +131,7 @@ module.exports = {
     charactersUpdate,
     moviesPost,
     moviesUpdate,
-    genderPost,
-    genderUpdate,
+    genrePost,
+    genreUpdate,
     getByID
 }

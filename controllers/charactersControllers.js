@@ -1,6 +1,6 @@
 const Characters = require('../models/charactersModels')
 const Movies = require('../models/moviesModels')
-const Gender = require('../models/genderModels')
+const Genre = require('../models/genreModels')
 const {Op} = require('sequelize')
 
 const list = async(req, res, next)=>{
@@ -36,8 +36,8 @@ const list = async(req, res, next)=>{
                 include: [{
                     model: Movies,
                     where: {id: req.query.movies},
-                    include: [Gender],
-                    attributes: {exclude: 'gender_id'}
+                    include: [Genre],
+                    attributes: {exclude: 'genre_id'}
                 }]
             })
 

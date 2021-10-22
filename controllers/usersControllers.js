@@ -3,7 +3,8 @@ const {hash, unHash} = require('../utils/bcrypt')
 const {createToken} = require('../services/auth')
 const sgMail = require('@sendgrid/mail')
 
-sgMail.setApiKey('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')
+const apikey = process.env.SENDGRID_API_KEY
+sgMail.setApiKey(apikey)
 const msg = (to, text, html)=>{
     return {
         to,

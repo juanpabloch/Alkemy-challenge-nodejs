@@ -1,5 +1,5 @@
 const Movies = require('../models/moviesModels')
-const Gender = require('../models/genderModels')
+const Genre = require('../models/genreModels')
 const Characters = require('../models/charactersModels')
 const {Op} = require('sequelize')
 
@@ -17,12 +17,12 @@ const list = async(req, res, next)=>{
             return
         }
 
-        //gender query
-        if(req.query.gender){
+        //genre query
+        if(req.query.genre){
             const response = await Movies.findAll({
                 attributes: ["id", "title", "date", "image"],
                 where: {
-                    gender_id: { [Op.eq]: req.query.gender }
+                    genre_id: { [Op.eq]: req.query.genre }
                 }
             })
             res.status(200).json(response)
@@ -64,8 +64,8 @@ const searchById = async(req, res, next)=>{
             where: {
                 id
             },
-            include: [Gender, Characters],
-            attributes: {exclude: "gender_id"}
+            include: [Genre, Characters],
+            attributes: {exclude: "genre_id"}
         })
         if(!response)throw new Error('Movie not exist')
         res.json(response)
@@ -76,10 +76,10 @@ const searchById = async(req, res, next)=>{
 
 const add = async(req, res, next)=>{
     try {
-        const { title, date, rate, gender_id} = req.body
+        const { title, date, rate, genre_id} = req.body
         const image = req.file.path
         if(image.length > 250)throw new Error('image name too long')
-        const response = await Movies.create({ title, date, rate, gender_id, image })
+        const response = await Movies.create({ title, date, rate, genre_id, image })
         res.status(201).json(response)
     } catch (error) {
         next(error)
@@ -115,7 +115,7 @@ const updateById = async(req, res, next)=>{
             "title": req.body.title || movie.title, 
             "date": req.body.date || movie.date,
             "rate": req.body.rate || movie.rate,
-            "gender_id": req.body.gender_id || movie.gender_id,
+            "genre_id": req.body.genre_id || movie.genre_id,
             "image": image || movie.image  
         }
 

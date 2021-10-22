@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/db')
-const Gender = require('./genderModels')
+const Genre = require('./genreModels')
 
 const Movie = sequelize.define("movie", {
     title: {
@@ -31,7 +31,7 @@ module.exports = Movie
 //creamos la relacion con la tabla genero, esta relacion belongsTo crea una nueva fila en la tabla Movies 
 //para referenciar a un genero
 
-Movie.belongsTo(Gender, {
-    foreignKey: "gender_id",
+Movie.belongsTo(Genre, {
+    foreignKey: "genre_id",
     targetKey: "id",
 })

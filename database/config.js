@@ -1,10 +1,10 @@
 module.exports = {
     database:{
-        host: "localhost",
-        user: "root",
-        password: "",
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
         port: 3306,
-        database: "alkemy_node",
+        database: process.env.DB_DATABASE,
         dialect: "mysql"
     }
 }
