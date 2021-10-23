@@ -3,6 +3,8 @@ const {hash, unHash} = require('../utils/bcrypt')
 const {createToken} = require('../services/auth')
 const sgMail = require('@sendgrid/mail')
 
+const emailHtml = require('../utils/email')
+
 const apikey = process.env.SENDGRID_API_KEY
 sgMail.setApiKey(apikey)
 const msg = (to, text, html)=>{
@@ -23,7 +25,8 @@ const register = async (req, res, next)=>{
         await Users.create({userName, email: email.trim(), password})
         
         const text = `hello ${userName}`
-        const html = `<h1>Hello ${userName}! and Welcome to Explore-Disney API</h1>`
+        const html = emailHtml(userName)
+        // const html = `<h1>Hello ${userName}! and Welcome to Explore-Disney API</h1>`
         sgMail.send(msg(email.trim(), text, html))
             .then(()=>{
                 console.log('email sent')
@@ -32,7 +35,7 @@ const register = async (req, res, next)=>{
                 console.log(err)
             })
 
-        res.status(201).json({msg: "user register successf1ully"})
+        res.status(201).json({msg: "user register successfully"})
     } catch (error) {
         next(error)
     }

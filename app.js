@@ -59,7 +59,7 @@ app.listen(port, async()=>{
         console.log(`app listening on port ${port}`)
         //conectamos a la base de datos
         await sequelize.authenticate()
-        // await sequelize.sync({alter:true})
+        // await sequelize.sync({force:true})
         console.log('connected to database')
     } catch (error) {
         console.log(`error to connect: ${error}`)
