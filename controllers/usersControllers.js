@@ -3,6 +3,22 @@ const {hash, unHash} = require('../utils/bcrypt')
 const {createToken} = require('../services/auth')
 const sgMail = require('@sendgrid/mail')
 
+const nodemailer = require('nodemailer')
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'juanpablochoternasty@gmail.com',
+        pass: '32620420jpc'
+    }
+})
+const mailOptions = (to, message)=>{
+    return {
+        from: "juanpablo@mailOptions.com",
+        to, 
+        subject: "Welcome to Explore-Disney API", 
+        html: message 
+    }
+}
 const emailHtml = require('../utils/email')
 
 const apikey = process.env.SENDGRID_API_KEY
@@ -27,14 +43,21 @@ const register = async (req, res, next)=>{
         const text = `hello ${userName}`
         const html = emailHtml(userName)
         // const html = `<h1>Hello ${userName}! and Welcome to Explore-Disney API</h1>`
-        sgMail.send(msg(email.trim(), text, html))
-            .then(()=>{
-                console.log('email sent')
-            })
-            .catch(err=>{
-                console.log(err)
-            })
+        // sgMail.send(msg(email.trim(), text, html))
+        //     .then(()=>{
+        //         console.log('email sent')
+        //     })
+        //     .catch(err=>{
+        //         console.log(err)
+        //     })
 
+        transporter.sendMail(mailOptions(email.trim(), emailHtml(userName)), (err, info)=>{
+            if(err){
+                console.log(err)
+            }else{
+                console.log(`email sent to: ${email}`)
+            }
+        })
         res.status(201).json({msg: "user register successfully"})
     } catch (error) {
         next(error)
@@ -56,7 +79,7 @@ const login = async (req, res, next)=>{
         }
         const JWT = createToken(jwtObject)
         res.json({
-            msj: "login successful",
+            msj: "login successfully",
             token: JWT
     })
     } catch (error) {

@@ -92,7 +92,7 @@ const deleteById = async(req, res, next)=>{
             }
         })
         if(!response)throw new Error('Character not exist')
-        res.json({msg: "Delete successful"})
+        res.json({msg: "Delete successfully"})
 
     } catch (error) {
         next(error)

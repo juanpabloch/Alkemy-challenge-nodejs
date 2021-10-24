@@ -1,0 +1,1087 @@
+{
+	"info": {
+		"_postman_id": "6b37baa6-3f2e-49c6-aab1-ef229748a4ad",
+		"name": "Alkemy challenge node.js",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "GET /movies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /movies/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /movies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Toy Story",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "1995/12/22",
+									"type": "text"
+								},
+								{
+									"key": "rate",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "gender_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "imagenesChallengeAlkemy/ironman_movie.jpg"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /movies/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/movies/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /movies/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "rate",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "gender_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /movies/:idMovie/characters/:idCharacter",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movies/:idMovie/characters/:idCharacter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								":idMovie",
+								"characters",
+								":idCharacter"
+							],
+							"variable": [
+								{
+									"key": "idMovie",
+									"value": null
+								},
+								{
+									"key": "idCharacter",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /movies?title=",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movies?title=toy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "toy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /movies?genre=",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movies?genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /movies?order=",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movies?order=DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "DESC"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					},
+					{
+						"key": "value",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Characters",
+			"item": [
+				{
+					"name": "GET /characters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /characters/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/characters/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /characters",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "iron man",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "21",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "ony Stark es el rico hijo del industrial y fabricante de armas Howard Stark. Tony creció como un genio con una mente brillante para la tecnología y los inventos y, naturalmente, siguió los pasos de su padre, heredando Stark Industries tras la prematura muerte de sus padres. Tony diseñó muchas armas de guerra para Stark Industries, mucho más allá de lo que cualquier otra compañía estaba creando. El destino tomaría un giro oscuro para Tony Stark una vez que decidiera consultar sobre un contrato de armas en el extranjero en terreno enemigo. Un artefacto explosivo improvisado explotó debajo del transporte de Tony y lo llevaron al borde de la muerte. Combinando su genio, Tony y Yinsen construyeron una poderosa armadura de hierro que sería apodada Iron Man. Este primer traje dejaba mucho margen de mejora, pero aun así hizo lo que Tony no podía hacer solo. Yinsen sacrificó su vida para poder hacer los preparativos finales, y Tony, vistiendo el traje de Iron Man por primera vez, escapó y regresó a los Estados Unidos como un hombre cambiado. Con acceso completo a su equipo, Tony construyó un nuevo y más aerodinámico armadura, la primera de muchas versiones actualizadas que crearía, y dedicó su vida a luchar contra las amenazas al mundo",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "_MG_1698.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "iron man",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /characters/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /characters/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "24",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/characters/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /characters/:idCharacter/movies/:idMovies",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/characters/:idCharacter/movies/:idMovie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								":idCharacter",
+								"movies",
+								":idMovie"
+							],
+							"variable": [
+								{
+									"key": "idCharacter",
+									"value": "3"
+								},
+								{
+									"key": "idMovie",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /characters?movies=",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters?movies=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /characters?name=",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters?name=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /characters?edad=",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters?edad=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "edad",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					},
+					{
+						"key": "value",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "GET /genre",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /genre/:id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genre/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genre",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /genre/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genre/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genre",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /genre",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "animacion",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "imagenesChallengeAlkemy/aimacion.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /genre/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "novela",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/genre/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genre",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "14"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /genre?name=",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genre?name=acc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genre"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "acc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJydWJpb2NoIiwiaWF0IjoxNjM0NjIwNTEwLCJleHAiOjE2MzUyMjUzMTB9.IIyTogyQ4FDhKTGI3MEv8Wy-MQ9HV8D1xi52GK36ItzdL2PbH-WwDOQDJItDmBS6zZuq5qS_1ibHS2mZxZ7LihzKANtG0MLbH126m7bfGy0mRG8Rc722C4Lipl2Fu983K3rma_mbmKQhqm5UGP65BR8KCY5C4MZiGq4pbft9Mlo",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "POST /auth/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"juanPa\",\r\n    \"email\": \"juanpablochoter@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juanpablo@mail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
