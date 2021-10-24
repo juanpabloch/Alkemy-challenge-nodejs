@@ -1,14 +1,14 @@
 const Users = require('../models/userModels')
 const {hash, unHash} = require('../utils/bcrypt')
 const {createToken} = require('../services/auth')
-const sgMail = require('@sendgrid/mail')
+// const sgMail = require('@sendgrid/mail')
 
 const nodemailer = require('nodemailer')
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'juanpablochoternasty@gmail.com',
-        pass: '32620420jpc'
+        pass: process.env.EMAIL-PASS
     }
 })
 const mailOptions = (to, message)=>{
@@ -21,17 +21,17 @@ const mailOptions = (to, message)=>{
 }
 const emailHtml = require('../utils/email')
 
-const apikey = process.env.SENDGRID_API_KEY
-sgMail.setApiKey(apikey)
-const msg = (to, text, html)=>{
-    return {
-        to,
-        from: 'juanpablo_ch2@hotmail.com',
-        subject: 'Welcome to Explore-Disney API',
-        text,
-        html
-    }
-}
+// const apikey = process.env.SENDGRID_API_KEY
+// sgMail.setApiKey(apikey)
+// const msg = (to, text, html)=>{
+//     return {
+//         to,
+//         from: 'juanpablo_ch2@hotmail.com',
+//         subject: 'Welcome to Explore-Disney API',
+//         text,
+//         html
+//     }
+// }
 
 const register = async (req, res, next)=>{
     try {
